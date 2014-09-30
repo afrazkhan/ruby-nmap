@@ -4,11 +4,23 @@ require 'rprogram/program'
 
 module Nmap
   #
-  # Represents the `nmap` program.
+  # Represents the 'nmap' and 'masscan' programs
   #
+
   class Program < RProgram::Program
 
-    name_program 'nmap'
+    def self.set_program (program_name)
+      program = program_name
+
+      if program == 'masscan'
+        name_program 'masscan'
+      elsif program == 'nmap'
+        name_program 'nmap'
+      else
+        puts "Please set which program you'd like to use with Nmap::Program.set_program"
+      end
+    end
+
 
     #
     # Finds the `nmap` program and performs a scan.
